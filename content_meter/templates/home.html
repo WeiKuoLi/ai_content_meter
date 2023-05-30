@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Content Meter</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #333;
+        }
+
+        .container {
+            margin: 150px auto 50px auto;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        .ai-meter-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .ai-meter-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            border-radius: 50%;
+            border: 10px solid #333;
+        }
+
+        .ai-meter-track {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            border: 10px solid #333;
+            background-color: #111;
+            overflow: hidden;
+        }
+
+        .ai-meter-value {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #88ff88;
+            border-radius: 50%;
+            transform-origin: 50% 100%;
+            transition: transform 1s;
+        }
+
+        .ai-meter-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #fff;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('#text-input').keypress(function(e) {
+                if (e.keyCode == 13) {
+                    calculateAIContent();
+                }
+            });
+        });
+
+        function calculateAIContent() {
+            var text = $('#text-input').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/calculate_ai_content/',
+                data: {
+                    'text': text,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: 'json',
+                success: function(response) {
+                    var aiPercentage = response.ai_percentage;
+                    updateMeter(aiPercentage);
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function updateMeter(aiPercentage) {
+            var meterValue = aiPercentage * 100;
+            $('#ai-meter-value').css('transform', 'rotate(' + (meterValue * 3.6 - 180) + 'deg)');
+            $('#ai-meter-label').text(meterValue.toFixed(2) + '%');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Content Meter</h1>
+        <div>
+            <textarea id="text-input" rows="4" cols="50"></textarea>
+            <br>
+            <button onclick="calculateAIContent()">Calculate AI Content</button>
+        </div>
+
+        <div class="ai-meter-container">
+            <div class="ai-meter-circle"></div>
+            <div class="ai-meter-track">
+                <div class="ai-meter-value" id="ai-meter-value"></div>
+            </div>
+        </div>
+        <div class="ai-meter-label" id="ai-meter-label">0.00%</div>
+    </div>
+</body>
+</html>
