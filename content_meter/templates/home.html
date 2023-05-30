@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AI Content Meter</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1965429688276949"
+     crossorigin="anonymous"></script>
+    <meta name="description" content="AI Content Meter - Detect AI-generated content. Calculate the percentage of AI content in a given text.">
+    <title> Know GPT- Detect AI-generated Content</title>
     <style>
+        
         body {
             background-color: #333;
+            color: #777;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 140vax;
         }
-
+    
         .container {
-            margin: 150px auto 50px auto;
             text-align: center;
-            max-width: 600px;
+            max-width: 50vw;
         }
-
+    
         h1 {
             color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
-
+    
         .ai-meter-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 50vmin;
+            height: 50vmin;
             margin: 0 auto;
         }
-
+    
         .ai-meter-circle {
             position: absolute;
             top: 0;
@@ -33,19 +45,19 @@
             height: 100%;
             background-color: #000;
             border-radius: 50%;
-            border: 10px solid #333;
+            border: 1% solid #333;
         }
-
+    
         .ai-meter-track {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-46.6%, -46.6%);
+            transform: translate(-50%, -50%);
             width: 90%;
             height: 90%;
             border-radius: 50%;
-            border: 10px solid #333;
-            background-color: #111;
+            border: 3% solid #111;
+            background-color: #444;
             overflow: hidden;
         }
 
@@ -53,23 +65,130 @@
             position: absolute;
             top: 50%;
             left: 0;
-            width: 50%;
+            width: 52%;
             height: 3%;
             background-color: #88ff88;
-            /* border-radius: 50%; */
             transform-origin: 100% 100%;
             transition: transform 1s;
         }
-
+        textarea {
+            width: 80%;
+            height: 30vmin;
+        }
+        button {
+            width: 65%;
+            height: 60px;
+            font-size: 3vmin;
+            font-weight: bold;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-top: 3vmin;
+            margin-bottom: 3vmin;
+            cursor: pointer;
+        }
+    
         .ai-meter-label {
             position: absolute;
             top: 74%;
-            left: 51%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 40px;
+            font-size: 10vmin;
             color: #fff;
         }
+    
+        /* Additional SEO optimization */
+        section {
+            bottom: 10px;
+        }
+    
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+    
+        footer {
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+        }
+    
+        /* Additional styles for ads */
+        .left-ad,
+        .right-ad {
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: 100px;
+            background-color: #f1f1f1;
+            z-index: 999;
+        }
+    
+        .left-ad {
+            left: 0;
+        }
+    
+        .right-ad {
+            right: 0;
+        }
     </style>
+    
+</head>
+<body>
+    
+    <div class="container">
+        <header>
+            <h1>Know-GPT : Detecting AI-Generated Content</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2>About Know-GPT</h2>
+                <p>
+                   Know-GPT is a powerful tool that allows you to detect AI-generated content and calculate the percentage of AI content in a given text. Whether you're curious about the authenticity of an article, blog post, or any other piece of text, this tool can provide valuable insights.
+                </p>
+            </section>
+
+            <section> 
+                <div>
+                    <textarea id="text-input" placeholder="Enter your text here"></textarea>
+                    <br>
+                    <button onclick="calculateAIContent()">Calculate AI Content</button>
+                </div>
+
+                <div class="ai-meter-container">
+                    <div class="ai-meter-circle"></div>
+                    <div class="ai-meter-track">
+                        <div class="ai-meter-value" id="ai-meter-value"></div>
+                    </div>
+                    
+                    <div class="ai-meter-label" id="ai-meter-label">0 %</div>
+                </div> 
+            </section>
+
+            <section>
+                <h2>Understanding the Results</h2>
+                <p>
+                    The Know-GPT AI Content Meter provides a visual representation of the AI content percentage in your text. The meter value indicates the level of AI content detected, with 0% representing no AI content and 100% representing entirely AI-generated content.
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Know-GPT. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#text-input').keypress(function(e) {
@@ -107,24 +226,5 @@
             $('#ai-meter-label').text(meterValue.toFixed(0) + ' %');
         }
     </script>
-</head>
-<body>
-    <div class="container">
-        <h1>AI Content Meter</h1>
-        <div>
-            <textarea id="text-input" rows="4" cols="50"></textarea>
-            <br>
-            <button onclick="calculateAIContent()">Calculate AI Content</button>
-        </div>
-
-        <div class="ai-meter-container">
-            <div class="ai-meter-circle"></div>
-            <div class="ai-meter-track">
-                <div class="ai-meter-value" id="ai-meter-value"></div>
-            </div>
-            
-            <div class="ai-meter-label" id="ai-meter-label">0 %</div>
-        </div> 
-    </div>
 </body>
 </html>
