@@ -18,7 +18,7 @@ class BinaryClassifier(nn.Module):
 input_dim = 50304
 bin_model = BinaryClassifier(input_dim)
 try:
-    bin_model.load_state_dict(torch.load('binary_classification.pth'))
+    bin_model.load_state_dict(torch.load('binary_classification.pth' , map_location=device))
 except:
     pass
 
